@@ -6,7 +6,7 @@ Ruby interface for [DjVuLibre](http://djvu.sourceforge.net/doc/index.html) tools
 
 Install [DjVuLibre](http://djvu.sourceforge.net/index.html) with this oneliner:
 
-```
+```bash
 sudo apt-get update && sudo apt-get install checkinstall && wget http://downloads.sourceforge.net/djvu/djvulibre-3.5.27.tar.gz && tar -xvzf djvulibre-3.5.27.tar.gz && rm djvulibre-3.5.27.tar.gz && cd djvulibre-3.5.27 && sudo ./configure && sudo make && sudo checkinstall && cd ../ && sudo rm -rf djvulibre-3.5.27
 ```
 
@@ -39,8 +39,12 @@ require 'djvu'
 ## Usage
 
 ### [ddjvu](http://djvu.sourceforge.net/doc/man/ddjvu.html)
-```
+```ruby
 Djvu.file('Alice_in_Wonderland.djvu').ddjvu(format: 'ppm', page: 1, output_file: '1.ppm')
+```
+Convert `ppm` to any image format with [rmagick](https://github.com/rmagick/rmagick) or [minimagick](https://github.com/minimagick/minimagick):
+```ruby
+MiniMagick::Image.open('1.ppm').write('1.png')
 ```
 
 ## Contributing
