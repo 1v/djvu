@@ -33,6 +33,20 @@ module Djvu
       status.success? || raise(UnprocessablePage, result)
     end
 
+    def djvutxt(options)
+      raise OutputFileNotFound unless options[:output_file]
+
+      result, status = Open3.capture2e('djvutxt ' + [parse_options(options), @djvufile, options[:output_file]].join(' '))
+
+      status.success? || raise(UnprocessablePage, result)
+    end
+
+    def djvudump(options)
+      result, status = Open3.capture2e('djvudump ' + [parse_options(options), @djvufile].join(' '))
+
+      status.success? || raise(UnprocessablePage, result)
+    end
+
     private
 
     def parse_options(options)
