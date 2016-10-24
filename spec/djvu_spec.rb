@@ -15,10 +15,14 @@ describe Djvu do
   end
 
   context '#djvutxt' do
+    it 'should export text layer of whole file' do
+      text = Djvu.file(fixture('Alice_in_Wonderland.djvu')).djvutxt
+      expect(text.lines.first.strip!).to eql("Alice's Adventures in Wonderland")
+    end
     it 'should export text layer' do
       file = Tempfile.new('')
       Djvu.file(fixture('Alice_in_Wonderland.djvu')).djvutxt(page: 8, output_file: file.path)
-      expect(file.size).to be > 0
+      expect(file.read.lines.first.strip!).to eql('CHAPTER I')
     end
   end
 

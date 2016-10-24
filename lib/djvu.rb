@@ -33,16 +33,22 @@ module Djvu
       status.success? || raise(UnprocessablePage, result)
     end
 
-    def djvutxt(options)
-      raise OutputFileNotFound unless options[:output_file]
+    def djvutxt(options = false)
+      command = []
+      command << 'djvutxt'
+      command << parse_options(options, '--%s=%s') if options
+      command << @djvufile
+      command << options[:output_file] if options && options[:output_file]
 
-      result, status = Open3.capture2e('djvutxt ' + [parse_options(options, "--%s=%s"), @djvufile, options[:output_file]].join(' '))
+      result, status = Open3.capture2e(command.join(' '))
 
       status.success? || raise(UnprocessablePage, result)
+
+      result
     end
 
     def djvudump(options = {})
-      result, status = Open3.capture2e('djvudump ' + [parse_options(options, "-%s %s"), @djvufile].join(' '))
+      result, status = Open3.capture2e('djvudump ' + [parse_options(options, '-%s %s'), @djvufile].join(' '))
 
       status.success? || raise(UnprocessablePage, result)
 
@@ -59,7 +65,7 @@ module Djvu
 
     private
 
-    def parse_options(options, pattern = "-%s=%s")
+    def parse_options(options, pattern = '-%s=%s')
       command = []
       options.each do |key, val|
         next if key === :output_file
