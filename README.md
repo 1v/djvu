@@ -37,7 +37,6 @@ require 'djvu'
 ```
 
 ## Usage
-
 ### [ddjvu](http://djvu.sourceforge.net/doc/man/ddjvu.html)
 ```ruby
 Djvu.file('Alice_in_Wonderland.djvu').ddjvu(format: 'ppm', page: 1, output_file: '1.ppm')
@@ -45,6 +44,14 @@ Djvu.file('Alice_in_Wonderland.djvu').ddjvu(format: 'ppm', page: 1, output_file:
 Convert `ppm` to any image format with [rmagick](https://github.com/rmagick/rmagick) or [minimagick](https://github.com/minimagick/minimagick):
 ```ruby
 MiniMagick::Image.open('1.ppm').write('1.png')
+```
+### [djvutxt](http://djvu.sourceforge.net/doc/man/djvutxt.html)
+```
+Djvu.file('Alice_in_Wonderland.djvu').djvutxt(page: 8, output_file: '1.txt')
+```
+### [djvudump](http://djvu.sourceforge.net/doc/man/djvudump.html)
+```
+dump = Djvu.file(fixture('Alice_in_Wonderland.djvu')).djvudump
 ```
 
 ## Contributing
