@@ -58,6 +58,11 @@ Djvu.file('Alice_in_Wonderland.djvu').djvutxt(page: 8, output_file: '1.txt')
 ```ruby
 dump = Djvu.file('Alice_in_Wonderland.djvu').djvudump
 ```
+### [djvused](http://djvu.sourceforge.net/doc/man/djvused.html)
+```ruby
+# Getting number of pages in djvu file
+num = Djvu.file('Alice_in_Wonderland.djvu').djvused(e: 'n')
+```
 
 ## Contributing
 
