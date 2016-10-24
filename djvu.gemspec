@@ -24,5 +24,7 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency "bundler", "~> 1.13"
   spec.add_development_dependency "rake", "~> 10.0"
   spec.add_development_dependency "rspec", "~> 3.0"
-  spec.add_development_dependency "codeclimate-test-reporter", "~> 0.6", ">= 0.6.0"
+  spec.add_development_dependency "codeclimate-test-reporter"
+    # codeclimate fix for ruby 1.9.3
+  spec.add_development_dependency "json", "~> 1.8", "< 2" if RUBY_VERSION < "2"
 end
