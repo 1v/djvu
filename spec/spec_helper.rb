@@ -7,6 +7,6 @@ require "djvu"
 RSpec.configure do |config|
   def fixture(filename)
     # puts "#{filename}: read action"
-    open(File.dirname(__FILE__) + '/fixtures/' + filename, "r:UTF-8").read
+    File.expand_path("spec/fixtures/#{filename}")
   end
 end
