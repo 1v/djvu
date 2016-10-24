@@ -7,6 +7,10 @@ module Djvu
   class Exception < ::StandardError
   end
 
+  # Exception that is raised if no input file.
+  class InputFileNotFound < Djvu::Exception
+  end
+
   # Exception that is raised if no output file.
   class OutputFileNotFound < Djvu::Exception
   end
@@ -15,20 +19,30 @@ module Djvu
   class UnprocessablePage < Djvu::Exception
   end
 
-  def self.file(djvufile)
-    Djvu::File.new(djvufile)
+  # Can't process page.
+  class MissingRequiredArgument < Djvu::Exception
   end
 
-  class File
+  def self.file(djvufile)
+    Djvu::Tools.new(djvufile)
+  end
+
+  class Tools
     def initialize(djvufile)
       @djvufile = djvufile
       self
     end
 
     def ddjvu(options)
-      raise OutputFileNotFound unless options[:output_file]
+      raise(MissingRequiredArgument, '-format is required') unless options[:format]
 
-      result, status = Open3.capture2e('ddjvu ' + [parse_options(options), @djvufile, options[:output_file]].join(' '))
+      command = []
+      command << 'ddjvu'
+      command << parse_options(options)
+      command << @djvufile
+      command << options[:output_file] if options[:output_file]
+
+      result, status = Open3.capture2e(command.join(' '))
 
       status.success? || raise(UnprocessablePage, result)
     end
@@ -47,16 +61,26 @@ module Djvu
       result
     end
 
-    def djvudump(options = {})
-      result, status = Open3.capture2e('djvudump ' + [parse_options(options, '-%s %s'), @djvufile].join(' '))
+    def djvudump(options = false)
+      command = []
+      command << 'djvudump'
+      command << parse_options(options, '-%s %s') if options
+      command << @djvufile
+
+      result, status = Open3.capture2e(command.join(' '))
 
       status.success? || raise(UnprocessablePage, result)
 
-      result unless options[:o]
+      result unless options && options[:o]
     end
 
-    def djvused(options = {})
-      result, status = Open3.capture2e('djvused ' + [parse_options(options, "-%s '%s'"), @djvufile].join(' '))
+    def djvused(options = false)
+      command = []
+      command << 'djvused'
+      command << parse_options(options, "-%s '%s'") if options
+      command << @djvufile
+
+      result, status = Open3.capture2e(command.join(' '))
 
       status.success? || raise(UnprocessablePage, result)
 
