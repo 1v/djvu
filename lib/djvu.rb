@@ -49,6 +49,14 @@ module Djvu
       result unless options[:o]
     end
 
+    def djvused(options = {})
+      result, status = Open3.capture2e('djvused ' + [parse_options(options, "-%s '%s'"), @djvufile].join(' '))
+
+      status.success? || raise(UnprocessablePage, result)
+
+      result
+    end
+
     private
 
     def parse_options(options, pattern = "-%s=%s")

@@ -35,4 +35,12 @@ describe Djvu do
       end
     end
   end
+
+  context '#djvused' do
+    it 'should return page count' do
+      file = Tempfile.new('')
+      num = Djvu.file(fixture('Alice_in_Wonderland.djvu')).djvused(e: 'n')
+      expect(num.to_i).to eql(114)
+    end
+  end
 end
