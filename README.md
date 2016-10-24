@@ -51,7 +51,7 @@ Djvu.file('Alice_in_Wonderland.djvu').djvutxt(page: 8, output_file: '1.txt')
 ```
 ### [djvudump](http://djvu.sourceforge.net/doc/man/djvudump.html)
 ```ruby
-dump = Djvu.file(fixture('Alice_in_Wonderland.djvu')).djvudump
+dump = Djvu.file('Alice_in_Wonderland.djvu').djvudump
 ```
 
 ## Contributing
