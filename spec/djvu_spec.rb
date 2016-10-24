@@ -8,7 +8,7 @@ describe Djvu do
 
   context '#ddjvu' do
     it 'should export file' do
-      file = Tempfile.new
+      file = Tempfile.new('')
       Djvu.file(fixture('Alice_in_Wonderland.djvu')).ddjvu(format: 'ppm', page: 1, output_file: file.path)
       expect(file.size).to be > 0
     end
@@ -16,7 +16,7 @@ describe Djvu do
 
   context '#djvutxt' do
     it 'should export text layer' do
-      file = Tempfile.new
+      file = Tempfile.new('')
       Djvu.file(fixture('Alice_in_Wonderland.djvu')).djvutxt(page: 8, output_file: file.path)
       expect(file.size).to be > 0
     end
@@ -29,7 +29,7 @@ describe Djvu do
         expect(dump.lines.first.strip!).to eql("FORM:DJVM [3548015]")
       end
       it 'with output file' do
-        file = Tempfile.new
+        file = Tempfile.new('')
         Djvu.file(fixture('Alice_in_Wonderland.djvu')).djvudump(o: file.path)
         expect(file.size).to be > 0
       end
