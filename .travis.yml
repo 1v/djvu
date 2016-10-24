@@ -1,4 +1,4 @@
-sudo: false
+sudo: true
 language: ruby
 rvm:
   - 1.9.3
@@ -7,7 +7,19 @@ rvm:
   - 2.2.1
   - 2.2.3
   - 2.3.1
-before_install: gem install bundler -v 1.13.6
+before_install:
+  - sudo apt-get update
+  - sudo apt-get install checkinstall
+  - wget http://downloads.sourceforge.net/djvu/djvulibre-3.5.27.tar.gz
+  - tar -xvzf djvulibre-3.5.27.tar.gz
+  - rm djvulibre-3.5.27.tar.gz
+  - cd djvulibre-3.5.27
+  - sudo ./configure
+  - sudo make
+  - sudo checkinstall
+  - cd ../
+  - sudo rm -rf djvulibre-3.5.27
+  - gem install bundler -v 1.13.6
 addons:
     code_climate:
         repo_token: dcdb2b8d67dad3b794f81cdb25ec5c016b677002fadb5296f8ae12c00c789cb8
