@@ -52,8 +52,10 @@ MiniMagick::Image.open('1.ppm').write('1.png')
 ```
 ### [djvutxt](http://djvu.sourceforge.net/doc/man/djvutxt.html)
 ```ruby
-# Extract text layer from page
+# Extract text layer from page to txt file
 Djvu.file('Alice_in_Wonderland.djvu').djvutxt(page: 8, output_file: '1.txt')
+# Extract text layer from page to variable
+text = Djvu.file('Alice_in_Wonderland.djvu').djvutxt(page: 8)
 ```
 ### [djvudump](http://djvu.sourceforge.net/doc/man/djvudump.html)
 ```ruby
