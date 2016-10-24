@@ -19,7 +19,11 @@ describe Djvu do
       text = Djvu.file(fixture('Alice_in_Wonderland.djvu')).djvutxt
       expect(text.lines.first.strip!).to eql("Alice's Adventures in Wonderland")
     end
-    it 'should export text layer' do
+    it 'should export text layer of one page' do
+      text = Djvu.file(fixture('Alice_in_Wonderland.djvu')).djvutxt(page: 3)
+      expect(text.lines.first.strip!).to eql("Alice's Adventures in Wonderland")
+    end
+    it 'should export text layer of one page to file' do
       file = Tempfile.new('')
       Djvu.file(fixture('Alice_in_Wonderland.djvu')).djvutxt(page: 8, output_file: file.path)
       expect(file.read.lines.first.strip!).to eql('CHAPTER I')
