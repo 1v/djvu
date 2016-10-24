@@ -42,7 +42,7 @@ require 'djvu'
 ```ruby
 Djvu.file('Alice_in_Wonderland.djvu').ddjvu(format: 'ppm', page: 1, output_file: '1.ppm')
 ```
-Convert `ppm` to any image format with rmagick or [minimagick](https://github.com/minimagick/minimagick):
+Convert `ppm` to any image format with [rmagick](https://github.com/rmagick/rmagick) or [minimagick](https://github.com/minimagick/minimagick):
 ```ruby
 MiniMagick::Image.open('1.ppm').write('1.png')
 ```
