@@ -1,5 +1,10 @@
 # Djvu
 
+[![Gem Version](https://badge.fury.io/rb/djvu.svg)](https://rubygems.org/gems/djvu)
+[![Build Status](https://travis-ci.org/1v/djvu.svg?branch=master)](https://travis-ci.org/1v/djvu)
+[![Code Climate](https://codeclimate.com/github/1v/djvu/badges/gpa.svg)](https://codeclimate.com/github/1v/djvu)
+[![Test Coverage](https://codeclimate.com/github/1v/djvu/badges/coverage.svg)](https://codeclimate.com/github/1v/djvu/coverage)
+
 Ruby interface for [DjVuLibre](http://djvu.sourceforge.net/doc/index.html) tools.
 
 ## Installation
