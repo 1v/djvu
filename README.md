@@ -38,7 +38,10 @@ require 'djvu'
 
 ## Usage
 
-TODO: Write usage instructions here
+### [ddjvu](http://djvu.sourceforge.net/doc/man/ddjvu.html)
+```
+Djvu.file('Alice_in_Wonderland.djvu').ddjvu(format: 'ppm', page: 1, output_file: '1.ppm')
+```
 
 ## Contributing
 
