@@ -23,7 +23,7 @@ describe Djvu do
   end
 
   context '#djvudump' do
-    context 'should export text layer' do
+    context 'should export dump' do
       it 'without output file' do
         dump = Djvu.file(fixture('Alice_in_Wonderland.djvu')).djvudump
         expect(dump.lines.first.strip!).to eql("FORM:DJVM [3548015]")
