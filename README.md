@@ -1,4 +1,4 @@
-# Djvu
+s# Djvu
 
 [![Gem Version](https://badge.fury.io/rb/djvu.svg)](https://rubygems.org/gems/djvu)
 [![Build Status](https://travis-ci.org/1v/djvu.svg?branch=master)](https://travis-ci.org/1v/djvu)
@@ -48,7 +48,7 @@ Djvu.file('Alice_in_Wonderland.djvu').ddjvu(format: 'ppm', page: 1, output_file:
 ```
 Convert `ppm` to any image format with [rmagick](https://github.com/rmagick/rmagick) or [minimagick](https://github.com/minimagick/minimagick):
 ```ruby
-MiniMagick::Image.open('1.ppm').write('1.png')
+MiniMagick::Image.open('1.ppm').format('png').write('1.png')
 ```
 ### [djvutxt](http://djvu.sourceforge.net/doc/man/djvutxt.html)
 ```ruby
