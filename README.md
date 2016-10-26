@@ -1,4 +1,4 @@
-s# Djvu
+## Djvu
 
 [![Gem Version](https://badge.fury.io/rb/djvu.svg)](https://rubygems.org/gems/djvu)
 [![Build Status](https://travis-ci.org/1v/djvu.svg?branch=master)](https://travis-ci.org/1v/djvu)
