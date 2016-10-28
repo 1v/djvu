@@ -12,6 +12,9 @@ describe Djvu do
       Djvu.file(fixture('Alice_in_Wonderland.djvu')).ddjvu(format: 'ppm', page: 1, output_file: file.path)
       expect(file.size).to be > 0
     end
+    it 'should allow option with no argument' do
+      Djvu.file(fixture('Alice_in_Wonderland.djvu')).ddjvu(format: 'ppm', page: 1, skip: true)
+    end
   end
 
   context '#djvutxt' do
@@ -27,6 +30,9 @@ describe Djvu do
       file = Tempfile.new('')
       Djvu.file(fixture('Alice_in_Wonderland.djvu')).djvutxt(page: 8, output_file: file.path)
       expect(file.read.lines.first.strip!).to eql('CHAPTER I')
+    end
+    it 'should allow option with no argument' do
+      Djvu.file(fixture('Alice_in_Wonderland.djvu')).djvutxt(page: 8, escape: true)
     end
   end
 

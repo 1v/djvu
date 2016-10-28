@@ -93,7 +93,11 @@ module Djvu
       command = []
       options.each do |key, val|
         next if key === :output_file
-        command << pattern % [key, val]
+        if val === true
+          command << "-#{key}"
+        else
+          command << pattern % [key, val]
+        end
       end
       command.join(' ')
     end
